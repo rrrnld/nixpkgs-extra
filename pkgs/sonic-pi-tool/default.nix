@@ -61,16 +61,22 @@ in stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/bin
-    echo '#!/usr/bin/env ${pythonWithPackages}/bin/python' > $out/bin/sonic-pi-tool
-    sed 1d ${src}/sonic-pi-tool.py >> $out/bin/sonic-pi-tool
-    sed -E -i "s|default_paths = \(.*$|default_paths = (\'${sonic-pi}/app\',|" $out/bin/sonic-pi-tool
-    sed -E -i "s|ruby_paths = \[.*$|ruby_paths = [\'${ruby}/bin/ruby\',|" $out/bin/sonic-pi-tool
+    cp ${src}/sonic-pi-tool.py $out/bin/sonic-pi-tool
     chmod +x $out/bin/sonic-pi-tool
   '';
 
   dontPatchShebangs = true;
-  doDist = true;
+  preFixup = ''
+    echo "Fixing shebang"
+    sed -i 1d $out/bin/sonic-pi-tool
+    sed -i '1i #!/usr/bin/env ${pythonWithPackages}/bin/python' $out/bin/sonic-pi-tool
+    echo "Fixing sonic-pi path"
+    sed -E -i "s|default_paths = \(.*$|default_paths = (\'${sonic-pi}/app\',|" $out/bin/sonic-pi-tool
+    echo "Fixing ruby path"
+    sed -E -i "s|ruby_paths = \[.*$|ruby_paths = [\'${ruby}/bin/ruby\',|" $out/bin/sonic-pi-tool
+  '';
 
+  doDist = true;
   distPhase = ''
     wrapProgram $out/bin/sonic-pi-tool $wrapperfile --prefix PATH : ${lib.makeBinPath [ jack2 ruby supercollider-with-sc3-plugins ]}
   '';
