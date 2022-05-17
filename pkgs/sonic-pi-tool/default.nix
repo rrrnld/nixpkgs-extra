@@ -53,9 +53,9 @@ in stdenv.mkDerivation rec {
   };
 
   meta = with lib; {
-    description = "A command-line pager for JSON data";
-    homepage = "https://github.com/PaulJuliusMartinez/jless";
-    license = licenses.mit;
+    description = "Controlling Sonic Pi from the command line, in Python.";
+    homepage = "https://github.com/emlyn/sonic-pi-tool";
+    license = licenses.mpl20;
     maintainers = [];
   };
 
