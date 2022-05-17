@@ -1,5 +1,5 @@
 {
-  description = "Some extra packages not present in the main nixpkgs while it hasn't yet eaten the world";
+  description = "Some extra packages not present in the official nixpkgs repo while it hasn't yet eaten the world";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
