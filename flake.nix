@@ -12,10 +12,12 @@
       pkgs = import nixpkgs { inherit system; };
     in rec {
       packages = flake-utils.lib.flattenTree {
-        vim-sonic-pi = pkgs.callPackage ./pkgs/vim-sonic-pi/default.nix {};
+        janet-vim = pkgs.callPackage ./pkgs/vim-plugins/janet-vim/default.nix {};
+        vim-sonic-pi = pkgs.callPackage ./pkgs/vim-plugins/vim-sonic-pi/default.nix {};
       };
       overlay = final: prev: {
         vimPlugins = prev.vimPlugins // {
+          janet-vim = packages.janet-vim;
           vim-sonic-pi = packages.vim-sonic-pi;
         };
       };
