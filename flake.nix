@@ -15,6 +15,12 @@
         sonic-pi-tool = pkgs.callPackage ./pkgs/sonic-pi-tool/default.nix {};
         vim-sonic-pi = pkgs.callPackage ./pkgs/vim-sonic-pi/default.nix {};
       };
+      overlay = final: prev: {
+        sonic-pi-tool = packages.sonic-pi-tool;
+        vimPlugins = prev.vimPlugins // {
+          vim-sonic-pi = packages.vim-sonic-pi;
+        };
+      };
     }
   );
 }

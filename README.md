@@ -17,3 +17,5 @@ After setting everything up, you can use it like you would any other flake. To r
 ``` bash
 nix run github:heyarne/nixpkgs#sonic-pi-tool
 ```
+
+There is also an overlay which can be used to expose all packages in your package tree.
