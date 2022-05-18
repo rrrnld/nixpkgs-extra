@@ -10,16 +10,21 @@
     flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = import nixpkgs { inherit system; };
-    in rec {
-      packages = flake-utils.lib.flattenTree {
+      mypkgs = {
         janet-vim = pkgs.callPackage ./pkgs/vim-plugins/janet-vim/default.nix {};
         vim-sonic-pi = pkgs.callPackage ./pkgs/vim-plugins/vim-sonic-pi/default.nix {};
       };
-      overlay = final: prev: {
+      myoverlay = (final: prev: {
         vimPlugins = prev.vimPlugins // {
-          janet-vim = packages.janet-vim;
-          vim-sonic-pi = packages.vim-sonic-pi;
+          janet-vim = mypkgs.janet-vim;
+          vim-sonic-pi = mypkgs.vim-sonic-pi;
         };
+      });
+    in rec {
+      packages = flake-utils.lib.flattenTree mypkgs;
+      overlay = myoverlay;
+      overlays = {
+        heyarne = myoverlay;
       };
     }
   );
