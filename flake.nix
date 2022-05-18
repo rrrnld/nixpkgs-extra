@@ -2,7 +2,7 @@
   description = "Some extra packages not present in the official nixpkgs repo while it hasn't yet eaten the world";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
   };
 

@@ -67,11 +67,12 @@ in stdenv.mkDerivation rec {
 
   dontPatchShebangs = true;
   preFixup = ''
-    echo "Fixing shebang"
-    sed -i 1d $out/bin/sonic-pi-tool
-    sed -i '1i #!/usr/bin/env ${pythonWithPackages}/bin/python' $out/bin/sonic-pi-tool
+    substituteInPlace $out/bin/sonic-pi-tool \
+      --replace '#!/usr/bin/env python3' '#!/usr/bin/env ${pythonWithPackages}/bin/python'
+
     echo "Fixing sonic-pi path"
     sed -E -i "s|default_paths = \(.*$|default_paths = (\'${sonic-pi}/app\',|" $out/bin/sonic-pi-tool
+
     echo "Fixing ruby path"
     sed -E -i "s|ruby_paths = \[.*$|ruby_paths = [\'${ruby}/bin/ruby\',|" $out/bin/sonic-pi-tool
   '';
