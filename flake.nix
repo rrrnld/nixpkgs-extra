@@ -13,12 +13,14 @@
       mypkgs = {
         janet-vim = pkgs.callPackage ./pkgs/vim-plugins/janet-vim/default.nix {};
         vim-sonic-pi = pkgs.callPackage ./pkgs/vim-plugins/vim-sonic-pi/default.nix {};
+        gotosocial = pkgs.callPackage ./pkgs/gotosocial {};
       };
       myoverlay = (final: prev: {
         vimPlugins = prev.vimPlugins // {
           janet-vim = mypkgs.janet-vim;
           vim-sonic-pi = mypkgs.vim-sonic-pi;
         };
+        gotosocial = pkgs.callPackage ./pkgs/gotosocial {};
       });
     in rec {
       packages = flake-utils.lib.flattenTree mypkgs;
