@@ -1,4 +1,4 @@
-{ lib, buildGoModule, fetchFromGitHub }:
+{ lib, buildGoModule, fetchFromGitHub, go }:
 
 buildGoModule rec {
   pname = "gotosocial";
@@ -12,9 +12,6 @@ buildGoModule rec {
   };
 
   vendorSha256 = null;
-  nativeBuildInputs = [];
-
-  subPackages = [];
 
   meta = with lib; {
     homepage = "https://docs.gotosocial.org/";
