@@ -10,21 +10,21 @@
     flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = import nixpkgs { inherit system; };
+      # small helper to reduce repetition
+      callPkg = path: pkgs.callPackage ./pkgs/${path}/default.nix {};
+      # flat map containing all packages
       extraPkgs = {
-        janet-vim = pkgs.callPackage ./pkgs/vim-plugins/janet-vim/default.nix {};
-        vim-sonic-pi = pkgs.callPackage ./pkgs/vim-plugins/vim-sonic-pi/default.nix {};
-        gotosocial = pkgs.callPackage ./pkgs/gotosocial {};
-        lithops = pkgs.callPackage ./pkgs/data/fonts/lithops {};
+        janet-vim = callPkg "vim-plugins/janet-vim";
+        vim-sonic-pi = callPkg "vim-plugins/vim-sonic-pi";
+        nodemcu-uploader = callPkg "nodemcu-uploader";
       };
+      # overlay that sorts all packages nicely
       defaultOverlay = (final: prev: {
         vimPlugins = prev.vimPlugins // {
           janet-vim = extraPkgs.janet-vim;
           vim-sonic-pi = extraPkgs.vim-sonic-pi;
         };
-        gotosocial = extraPkgs.gotosocial;
-
-        # fonts
-        lithops = extraPkgs.lithops;
+        nodemcu-uploader = extraPkgs.nodemcu-uploader;
       });
     in rec {
       packages = flake-utils.lib.flattenTree extraPkgs;
