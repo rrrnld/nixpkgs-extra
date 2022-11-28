@@ -15,8 +15,9 @@
       # flat map containing all packages
       extraPkgs = {
         janet-vim = callPkg "vim-plugins/janet-vim";
-        vim-sonic-pi = callPkg "vim-plugins/vim-sonic-pi";
         nodemcu-uploader = callPkg "nodemcu-uploader";
+        vim-sonic-pi = callPkg "vim-plugins/vim-sonic-pi";
+        go-pmtiles = callPkg "go-pmtiles";
       };
       # overlay that sorts all packages nicely
       defaultOverlay = (final: prev: {
@@ -25,6 +26,7 @@
           vim-sonic-pi = extraPkgs.vim-sonic-pi;
         };
         nodemcu-uploader = extraPkgs.nodemcu-uploader;
+        go-pmtiles = extraPkgs.go-pmtiles;
       });
     in rec {
       packages = flake-utils.lib.flattenTree extraPkgs;
