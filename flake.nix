@@ -32,6 +32,12 @@
       });
     in rec {
       packages = extraPkgs;
+      apps = {
+        mqtt2prometheus = {
+          type = "app";
+          program = "${extraPkgs.mqtt2prometheus}/bin/cmd";
+        };
+      };
       overlay = defaultOverlay;
       overlays = {
         default = defaultOverlay;
