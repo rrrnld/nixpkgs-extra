@@ -2,19 +2,19 @@
 
 buildGoModule rec {
   pname = "go-pmtiles";
-  version = "1.6.2";
+  version = "2.0.1";
 
   src = fetchFromGitHub {
     owner = "protomaps";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-O6CvBSkOPcJ/zaY/IyKRQfTT/MUPdiCa//7b5PkDRGE=";
+    sha256 = "sha256-gd85VB+Gjc75UdfsSjaXH2vWg+Da3uyVkVWt5KzYKcc=";
   };
 
-  vendorSha256 = "sha256-0hycEEOu4E8U+B/7RFG0gdBcmR3/4xPc5GjJTGou0Ns=";
+  vendorSha256 = "sha256-roFmZJzw+5ieCCrUX+/Ril6KSJBgFU3nN+/ayyYNPgE=";
 
   meta = with lib; {
-    description = "Single-file executable tool for creating, reading and uploading PMTiles archives ";
+    description = "Single-file executable tool for creating, reading and uploading PMTiles archives.";
     homepage = "https://github.com/protomaps/go-pmtiles";
     license = licenses.bsd3;
     platforms = platforms.unix;

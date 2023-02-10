@@ -32,6 +32,12 @@
       });
     in rec {
       packages = extraPkgs;
+      apps = {
+        go-pmtiles = {
+          type = "app";
+          program = "${self.packages."${system}".go-pmtiles}/bin/pmtiles";
+        };
+      };
       overlay = defaultOverlay;
       overlays = {
         default = defaultOverlay;
