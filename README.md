@@ -15,7 +15,7 @@ to your `~/.config/nix/nix.conf`. If you need more information, [here is a good 
 After setting everything up, you can use it like you would any other flake. To run [`sonic-pi-tool`](https://github.com/emlyn/sonic-pi-tool) for example, execute
 
 ``` bash
-nix run github:heyarne/nixpkgs#sonic-pi-tool
+nix run github:heyarne/nixpkgs-extra#sonic-pi-tool
 ```
 
 There is also an overlay which can be used to expose all packages in your package tree.
