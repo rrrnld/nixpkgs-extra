@@ -18,6 +18,7 @@
         nodemcu-uploader = callPkg "nodemcu-uploader";
         vim-sonic-pi = callPkg "vim-plugins/vim-sonic-pi";
         go-pmtiles = callPkg "go-pmtiles";
+        mqtt2prometheus = callPkg "mqtt2prometheus";
       };
       # overlay that sorts all packages nicely
       defaultOverlay = (final: prev: {
@@ -27,9 +28,10 @@
         };
         nodemcu-uploader = extraPkgs.nodemcu-uploader;
         go-pmtiles = extraPkgs.go-pmtiles;
+        mqtt2prometheus = extraPkgs.mqtt2prometheus;
       });
     in rec {
-      packages = flake-utils.lib.flattenTree extraPkgs;
+      packages = extraPkgs;
       overlay = defaultOverlay;
       overlays = {
         default = defaultOverlay;
