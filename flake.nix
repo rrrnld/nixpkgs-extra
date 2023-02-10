@@ -11,7 +11,7 @@
     let
       pkgs = import nixpkgs { inherit system; };
       # small helper to reduce repetition
-      callPkg = path: pkgs.callPackage ./pkgs/${path}/default.nix {};
+      callPkg = path: pkgs.callPackage ./pkgs/${path} {};
       # flat map containing all packages
       extraPkgs = {
         janet-vim = callPkg "vim-plugins/janet-vim";
@@ -32,12 +32,6 @@
       });
     in rec {
       packages = extraPkgs;
-      apps = {
-        go-pmtiles = {
-          type = "app";
-          program = "${self.packages."${system}".go-pmtiles}/bin/pmtiles";
-        };
-      };
       overlay = defaultOverlay;
       overlays = {
         default = defaultOverlay;
