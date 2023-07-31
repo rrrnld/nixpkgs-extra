@@ -14,21 +14,23 @@
       callPkg = path: pkgs.callPackage ./pkgs/${path} {};
       # flat map containing all packages
       extraPkgs = {
+        go-pmtiles = callPkg "go-pmtiles";
+        imposm = callPkg "imposm";
         janet-vim = callPkg "vim-plugins/janet-vim";
+        mqtt2prometheus = callPkg "mqtt2prometheus";
         nodemcu-uploader = callPkg "nodemcu-uploader";
         vim-sonic-pi = callPkg "vim-plugins/vim-sonic-pi";
-        go-pmtiles = callPkg "go-pmtiles";
-        mqtt2prometheus = callPkg "mqtt2prometheus";
       };
-      # overlay that sorts all packages nicely
+      # overlay that exports all packages nicely
       defaultOverlay = (final: prev: {
         vimPlugins = prev.vimPlugins // {
           janet-vim = extraPkgs.janet-vim;
           vim-sonic-pi = extraPkgs.vim-sonic-pi;
         };
-        nodemcu-uploader = extraPkgs.nodemcu-uploader;
         go-pmtiles = extraPkgs.go-pmtiles;
+        imposm = extraPkgs.imposm;
         mqtt2prometheus = extraPkgs.mqtt2prometheus;
+        nodemcu-uploader = extraPkgs.nodemcu-uploader;
       });
     in rec {
       packages = extraPkgs;
