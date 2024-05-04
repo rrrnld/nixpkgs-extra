@@ -16,7 +16,7 @@ buildGoModule rec {
     geos
   ];
 
-  vendorSha256 = null;
+  vendorHash = null;
 
   # FIXME: Some tests require the network (github.com/omniscale/imposm3/import_)
   doCheck = false;

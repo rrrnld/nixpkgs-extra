@@ -10,7 +10,7 @@ buildGoModule rec {
     sha256 = "sha256-D5AO6Qsz44ssmRu80PDiRjKSxkOUe4OSm+xtvyGkdUQ=";
   };
   
-  vendorSha256 = "sha256-5P5J1HwlOFMaGj77k4jU8uJtm0XUIqdPT9abRcvHt2s=";
+  vendorHash = "sha256-5P5J1HwlOFMaGj77k4jU8uJtm0XUIqdPT9abRcvHt2s=";
   
   meta = with lib; {
     description = "MQTT to Prometheus gateway";

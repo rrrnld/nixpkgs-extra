@@ -11,7 +11,7 @@ buildGoModule rec {
     sha256 = "sha256-gd85VB+Gjc75UdfsSjaXH2vWg+Da3uyVkVWt5KzYKcc=";
   };
 
-  vendorSha256 = "sha256-roFmZJzw+5ieCCrUX+/Ril6KSJBgFU3nN+/ayyYNPgE=";
+  vendorHash = "sha256-roFmZJzw+5ieCCrUX+/Ril6KSJBgFU3nN+/ayyYNPgE=";
 
   meta = with lib; {
     description = "Single-file executable tool for creating, reading and uploading PMTiles archives.";
