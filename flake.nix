@@ -16,14 +16,17 @@
       extraPkgs = {
         go-pmtiles = callPkg "go-pmtiles";
         imposm = callPkg "imposm";
-        janet-vim = callPkg "vim-plugins/janet-vim";
         mqtt2prometheus = callPkg "mqtt2prometheus";
         nodemcu-uploader = callPkg "nodemcu-uploader";
+
+        conjure = callPkg "vim-plugins/conjure";
+        janet-vim = callPkg "vim-plugins/janet-vim";
         vim-sonic-pi = callPkg "vim-plugins/vim-sonic-pi";
       };
       # overlay that exports all packages nicely
       defaultOverlay = (final: prev: {
         vimPlugins = prev.vimPlugins // {
+          conjure = extraPkgs.conjure;
           janet-vim = extraPkgs.janet-vim;
           vim-sonic-pi = extraPkgs.vim-sonic-pi;
         };
